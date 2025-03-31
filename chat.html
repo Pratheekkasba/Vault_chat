@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vault Chat Room</title>
+    <link rel="stylesheet" href="chat.css">
+</head>
+<body>
+    <div class="chat-header">
+        <h2>Chat Room</h2>
+        <button class="leave-btn" onclick="leaveRoom()">Leave Room</button>
+    </div>
+
+    <div class="chat-container">
+        <div id="chatBox" class="chat-box"></div>
+
+        <div class="input-area">
+            <input type="text" id="messageInput" placeholder="Type a message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        // Extract username from URL params
+        const urlParams = new URLSearchParams(window.location.search);
+        const userName = urlParams.get('name') || 'You';
+
+        // Message sending logic
+        function sendMessage() {
+            const messageInput = document.getElementById('messageInput');
+            const message = messageInput.value.trim();
+            if (!message) return; 
+
+            const chatBox = document.getElementById('chatBox');
+
+            // Append sent message
+            const sentMessage = document.createElement('div');
+            sentMessage.classList.add('message', 'sent');
+            sentMessage.innerHTML = `<strong>${userName}:</strong> ${message}`;
+            chatBox.appendChild(sentMessage);
+
+            messageInput.value = ""; // Clear input
+            chatBox.scrollTop = chatBox.scrollHeight; // Auto scroll
+        }
+
+        function leaveRoom() {
+            const confirmLeave = confirm("Are you sure you want to leave the chat room?");
+            if (confirmLeave) {
+                window.location.href = 'index.html';  // Redirect to home page
+            }
+        }
+    </script>
+</body>
+</html>

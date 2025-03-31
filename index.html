@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vault Chat</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">
+        <div class="logo-title">
+            <img class="logo" src="b251b141-b440-4b94-8c04-43384804f3b7.jpeg" alt="Vault Chat Logo">
+            <h1>Vault Chat</h1>
+        </div>
+        <div class="nav-buttons">
+            <button onclick="goHome()">Home</button>
+            <button onclick="showSettings()">Settings</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="mode-selection">
+            <button onclick="showCreate()">Create Session</button>
+            <button onclick="showJoin()">Join Session</button>
+        </div>
+
+        <div id="createSession" class="hidden">
+            <input type="text" id="createName" placeholder="Enter your name">
+            <div class="checkbox-group">
+                <input type="checkbox" id="createCheckbox">
+                <label for="createCheckbox">I confirm that I am 18 or above</label>
+            </div>
+            <button onclick="createSession()">Create</button>
+        </div>
+
+        <div id="createOutput" class="hidden">
+            <p id="outputMessage"></p>
+            <button id="connectBtn" class="connect-btn hidden" onclick="connectSession()">Connect</button>
+        </div>
+
+        <div id="joinSession" class="hidden">
+            <input type="text" id="joinName" placeholder="Enter your name">
+            <input type="text" id="sessionCode" placeholder="Enter Session Code">
+            <button onclick="joinSession()">Join</button>
+        </div>
+
+        <div id="connectionStatus" class="hidden"></div>
+    </div>
+
+    <div id="settingsPanel" class="hidden settings-panel">
+        <h2>Settings</h2>
+        <p>Theme: <select class="option" id="themeSelect">
+            <option value="light">Light Mode</option>
+            <option value="dark">Dark Mode</option>
+        </select></p>
+        <p>Notifications: 
+            <input type="checkbox" id="notificationsCheckbox"> Enable Notifications
+        </p>
+        <button onclick="closeSettings()">Close</button>
+    </div>
+
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
